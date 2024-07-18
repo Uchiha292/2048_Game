@@ -207,15 +207,17 @@ board = create_board()
 display()
 
 while not game_over:
+  game_over = win_check() #check if user has won
+  game_over = no_moves()  #check if user lost, can't move
+  #If the user has won or lost, break the loop
+  if game_over:
+    break
+
   _temp_board = copy.deepcopy(board)  #temporary board, to check if movement possible
   movement = input("Enter wasd keys for movement ")
   match movement:
     case "w":
-      board = merge_up(board)
-      game_over = win_check() #check if user has won
-      game_over = no_moves()  #check if user lost, can't move
-      if game_over:
-        break
+      board = merge_up(board)      
       if _temp_board != board:
         place_num()
         display()
@@ -223,11 +225,7 @@ while not game_over:
         print(f"Movement in {movement} direction not Possible")
 
     case "a":
-      board = merge_left(board)
-      game_over = win_check() #check if user has won
-      game_over = no_moves()  #check if user lost, can't move
-      if game_over:
-        break
+      board = merge_left(board)      
       if _temp_board != board:
         place_num()
         display()
@@ -235,11 +233,7 @@ while not game_over:
         print(f"Movement in {movement} direction not Possible")
 
     case "s":
-      board = merge_down(board)
-      game_over = win_check() #check if user has won
-      game_over = no_moves()  #check if user lost, can't move
-      if game_over:
-        break
+      board = merge_down(board)      
       if _temp_board != board:
         place_num()
         display()
@@ -247,11 +241,7 @@ while not game_over:
         print(f"Movement in {movement} direction not Possible")
 
     case "d":
-      board = merge_right(board)
-      game_over = win_check() #check if user has won
-      game_over = no_moves()  #check if user lost, can't move
-      if game_over:
-        break
+      board = merge_right(board)      
       if _temp_board != board:
         place_num()
         display()
